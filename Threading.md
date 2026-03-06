@@ -99,7 +99,7 @@ q.join()  # Block main thread until all items marked done
 
 ## Real-World Example
 
-**Port Scanner** (github.com/you/port-scanner)
+**Port Scanner** (/Users/ms/Documents/VSC_Python_Projects/port_scanner.py)
 - Scans 65k ports in ~2 seconds
 - Uses 40 threads
 - Thread-safe output with Lock
