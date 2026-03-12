@@ -60,6 +60,24 @@ with open("output.csv", "w", newline="") as file:
 - **For lists:** Use `csv.writer`
 - **For dicts:** Use `csv.DictWriter` (if data is already dicts)
 
+## Combining Multiple Dicts for CSV
+
+When you have nested dicts (dict of dicts), merge them before writing:
+```python
+results_by_url = {
+    "http://example.com": {"Server": "cloudflare", "Content-Type": "text/html"},
+    "http://google.com": {"Server": "gws", "Content-Type": "text/html"}
+}
+
+with open("output.csv", "w", newline="") as file:
+    writer = csv.DictWriter(file, fieldnames=["URL", "Server", "Content-Type"])
+    writer.writeheader()
+    for url, headers in results_by_url.items():
+        row = {"URL": url}
+        row.update(headers)  # Merge dicts
+        writer.writerow(row)
+```
+
 ## GitHub Repos Example
 ```python
 my_list = []
