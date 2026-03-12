@@ -46,6 +46,18 @@ with open("output.csv", "w", newline="") as file:
     writer.writerows(data)  # Write dict rows
 ```
 
+**Breaking it down:**
+
+- `.items()` – Unpacks the dict into key-value pairs
+- `url` = the key (e.g., "http://example.com")
+- `headers` = the value (dict of headers for that URL)
+- `row = {"URL": url}` – Create a new dict with the URL
+- `row.update(headers)` – Merge the headers dict into row
+- Before: `{"URL": "http://example.com"}`
+- After: `{"URL": "http://example.com", "Server": "cloudflare", "X-Powered-By": "No Results", ...}`
+- `writer.writerow(row)` – Write the combined dict as one CSV row
+
+
 **Key difference:** DictWriter maps dict keys to column names. Useful if your data is already structured as dicts, but adds complexity if you're already working with lists.
 
 **Note:** DictWriter can be finicky. If you have list data, convert to lists and use csv.writer instead—it's cleaner and more predictable.
